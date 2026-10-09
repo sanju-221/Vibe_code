@@ -1,0 +1,99 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String          @id @default(cuid())
+  username     String          @unique
+  email        String?         @unique
+  passwordHash String?
+  image        String?
+  createdAt    DateTime        @default(now())
+  updatedAt    DateTime        @updatedAt
+  tradingDays  TradingDay[]
+  targets      Target[]
+  preference   UserPreference?
+}
+
+model TradingDay {
+  id          String   @id @default(cuid())
+  userId      String
+  tradingDate DateTime @db.Date
+  dayType     DayType  @default(TRADE)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  trades      Trade[]
+
+  @@unique([userId, tradingDate])
+}
+
+model Trade {
+  id           String     @id @default(cuid())
+  tradingDayId String
+  tradeNumber  Int
+  stockName    String
+  tradeType    TradeType
+  buyPoint     Float?
+  sellPoint    Float?
+  profitLoss   Float
+  amount       Float
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  tradingDay   TradingDay @relation(fields: [tradingDayId], references: [id], onDelete: Cascade)
+}
+
+model Target {
+  id           String     @id @default(cuid())
+  userId       String
+  name         String
+  targetType   TargetType
+  startDate    DateTime   @db.Date
+  endDate      DateTime   @db.Date
+  targetAmount Float
+  createdAt    DateTime   @default(now())
+  updatedAt    DateTime   @updatedAt
+  user         User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model UserPreference {
+  id        String   @id @default(cuid())
+  userId    String   @unique
+  theme     Theme    @default(SYSTEM)
+  currency  String   @default("INR")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum TradeType {
+  BUY
+  SELL
+}
+
+enum DayType {
+  TRADE
+  NO_TRADE
+  HOLIDAY
+}
+
+enum TargetType {
+  WEEKLY
+  MONTHLY
+  YEARLY
+  CUSTOM
+}
+
+enum Theme {
+  LIGHT
+  DARK
+  SYSTEM
+}
