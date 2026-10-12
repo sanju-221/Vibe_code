@@ -2,6 +2,7 @@
   "name": "on-track",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
   "description": "On-Track — a personal intraday trade journal and P&L analytics dashboard.",
   "engines": {
     "node": ">=20.9.0"

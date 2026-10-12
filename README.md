@@ -6,13 +6,14 @@
 
 Record each trading day, classify it as **Trade / No Trade / Holiday**, and see your profit and loss for today, this week, month, year and overall.
 
-[![CI](https://github.com/<your-username>/on-track/actions/workflows/ci.yml/badge.svg)](https://github.com/<your-username>/on-track/actions/workflows/ci.yml)
+[![CI](https://github.com/sanju-221/Vibe_code/actions/workflows/ci.yml/badge.svg)](https://github.com/sanju-221/Vibe_code/actions/workflows/ci.yml)
 ![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=black)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)
 ![Prisma](https://img.shields.io/badge/Prisma-6-2D3748?logo=prisma)
 ![PostgreSQL](https://img.shields.io/badge/PostgreSQL-17-4169E1?logo=postgresql&logoColor=white)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 
 </div>
 
@@ -33,6 +34,7 @@ Record each trading day, classify it as **Trade / No Trade / Holiday**, and see 
 - [Deployment](#deployment)
 - [Continuous integration](#continuous-integration)
 - [Roadmap](#roadmap)
+- [License](#license)
 
 ---
 
@@ -166,8 +168,8 @@ on-track/
 ### 1. Clone and install
 
 ```bash
-git clone https://github.com/<your-username>/on-track.git
-cd on-track
+git clone https://github.com/sanju-221/Vibe_code.git
+cd Vibe_code
 npm install          # also generates the Prisma client
 ```
 
@@ -358,6 +360,12 @@ No secrets are needed. The workflow uses placeholder environment values, because
 - [ ] Brokerage, taxes and charges per trade
 - [ ] Unit tests for `analytics.ts` and API route tests
 - [ ] Prisma migrations (`prisma migrate`) for production schema changes
+
+---
+
+## License
+
+Released under the [MIT License](LICENSE).
 
 ---
 
